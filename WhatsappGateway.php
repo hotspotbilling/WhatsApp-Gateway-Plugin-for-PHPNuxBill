@@ -154,10 +154,7 @@ function whatsappGateway_send()
     if ($secret != md5($config['whatsapp_gateway_secret'])) {
         showResult(false, 'Invalid secret');
     }
-    $result  = whatsappGateway_hook_send_whatsapp([
-        'phone' => $to,
-        'txt' => $msg
-    ]);
+    $result  = whatsappGateway_hook_send_whatsapp([$to, $msg]);
     $json = json_decode($result, true);
     if ($json) {
         showResult(true, '', $json);
