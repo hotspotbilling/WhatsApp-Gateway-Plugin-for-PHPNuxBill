@@ -51,7 +51,16 @@
                             <label>Auth Basic Password</label>
                             <input type="text" class="form-control" name="whatsapp_gateway_secret" required
                                 placeholder="AUTH_BASIC_PASSWORD" value="{$_c['whatsapp_gateway_secret']}">
-                            <span class="text-muted pull-right">AUTH_BASIC_PASSWORD From .env</span>
+                            <span class="text-muted">AUTH_BASIC_PASSWORD From .env, change this will change secret for API</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">{Lang::T('Country Code Phone')}</label>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">+</span>
+                                <input type="text" class="form-control" id="whatsapp_country_code_phone" placeholder="62"
+                                    name="whatsapp_country_code_phone" value="{$_c['whatsapp_country_code_phone']}">
+                            </div>
+                            <span class="text-muted">if you put 62, Phone started with 0xxxx will change to 62xxxx</span>
                         </div>
                     </div>
                     <div class="box-footer">
@@ -147,6 +156,7 @@
                 <h4>API To send directly</h4>
                 <input type="text" class="form-control" readonly onclick="this.select();"
                     value="{$_url}plugin/whatsappGateway_send&to=[number]&msg=[text]&secret={md5($_c['whatsapp_gateway_secret'])}">
+                <span class="text-muted">Change Auth Basic Password will change secret. No need to change whatsapp URL in PHPNuxBill with this. the plugin will work directly.</span>
             </div>
         </div>
     </div>

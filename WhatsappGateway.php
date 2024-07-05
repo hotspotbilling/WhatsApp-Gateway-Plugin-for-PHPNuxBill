@@ -57,6 +57,16 @@ function whatsappGateway_config()
             $d->value = _post('whatsapp_gateway_secret');
             $d->save();
         }
+        $d = ORM::for_table('tbl_appconfig')->where('setting', 'whatsapp_country_code_phone')->find_one();
+        if ($d) {
+            $d->value = _post('whatsapp_country_code_phone');
+            $d->save();
+        } else {
+            $d = ORM::for_table('tbl_appconfig')->create();
+            $d->setting = 'whatsapp_country_code_phone';
+            $d->value = _post('whatsapp_country_code_phone');
+            $d->save();
+        }
         r2(U . 'plugin/whatsappGateway_config', 's', 'Configuration saved');
     }
     $ui->assign('_title', 'Whatsap Gateway Configuration');
@@ -168,6 +178,9 @@ function whatsappGateway_hook_send_whatsapp($data = [])
     global $config;
     list($phone, $txt) = $data;
     if (!empty($config['whatsapp_gateway_url'])) {
+        if (!empty($config['whatsapp_country_code_phone'])) {
+            $phone = whatsappGateway_phoneFormat($phone);
+        }
         $path = whatsappGateway_getPath();
         $files = scandir($path);
         $was = [];
@@ -312,4 +325,15 @@ function whatsappGateway_loginApi($jwt_whatsapp)
         ]
     );
     return $result;
+}
+
+
+function whatsappGateway_phoneFormat($phone)
+{
+    global $config;
+    if (!empty($phone) && !empty($config['whatsapp_country_code_phone'])) {
+        return preg_replace('/^0/',  $config['whatsapp_country_code_phone'], $phone);
+    } else {
+        return $phone;
+    }
 }
