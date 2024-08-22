@@ -8,7 +8,7 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">
-                            Login Whatsapp
+                            {Lang::T('Login Whatsapp')}
                         </h3>
                     </div>
                     <div class="box-body with-border text-center">
@@ -17,10 +17,10 @@
                     <div class="box-footer">
                         <div class="row">
                             <div class="col-xs-4">
-                                <a class="btn btn-default btn-sm btn-block" href="{$_url}plugin/whatsappGateway">back</a>
+                                <a class="btn btn-default btn-sm btn-block" href="{$_url}plugin/whatsappGateway">{Lang::T('back')}</a>
                             </div>
                             <div class="col-xs-8">
-                                <button class="btn btn-primary btn-sm btn-block" type="submit">Check Login</button>
+                                <button class="btn btn-primary btn-sm btn-block" type="submit">{Lang::T('Check Login')}</button>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">
-                            Configuration
+                            {Lang::T('Configuration')}
                         </h3>
                     </div>
                     <div class="box-body with-border">
@@ -51,7 +51,7 @@
                             <label>Auth Basic Password</label>
                             <input type="text" class="form-control" name="whatsapp_gateway_secret" required
                                 placeholder="AUTH_BASIC_PASSWORD" value="{$_c['whatsapp_gateway_secret']}">
-                            <span class="text-muted">AUTH_BASIC_PASSWORD From .env, change this will change secret for API</span>
+                            <span class="text-muted">{Lang::T('AUTH_BASIC_PASSWORD From .env, change this will change secret for API')}</span>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{Lang::T('Country Code Phone')}</label>
@@ -60,16 +60,16 @@
                                 <input type="text" class="form-control" id="whatsapp_country_code_phone" placeholder="62"
                                     name="whatsapp_country_code_phone" value="{$_c['whatsapp_country_code_phone']}">
                             </div>
-                            <span class="text-muted">if you put 62, Phone started with 0xxxx will change to 62xxxx</span>
+                            <span class="text-muted">{Lang::T('if you put 62, Phone started with 0xxxx will change to 62xxxx')}</span>
                         </div>
                     </div>
                     <div class="box-footer">
                         <div class="row">
                             <div class="col-xs-4">
-                                <a class="btn btn-default btn-sm btn-block" href="{$_url}plugin/whatsappGateway">back</a>
+                                <a class="btn btn-default btn-sm btn-block" href="{$_url}plugin/whatsappGateway">{Lang::T('back')}</a>
                             </div>
                             <div class="col-xs-8">
-                                <button class="btn btn-primary btn-sm btn-block" type="submit">Save</button>
+                                <button class="btn btn-primary btn-sm btn-block" type="submit">{Lang::T('Save')}</button>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">
                         <i class="glyphicon glyphicon-plus"></i>
-                        Add Phone
+                        {Lang::T('Add Phone')}
                     </h3>
                     <div class="box-tools pull-right">
                         <a href="{$_url}plugin/whatsappGateway_config" class="btn btn-box-tool" data-toggle="tooltip"
@@ -102,12 +102,12 @@
                                     <input type="text" class="form-control" name="phonenumber" required
                                         placeholder="{$_c['country_code_phone']} {Lang::T('Phone Number')}">
                                 </div>
-                                <span class="pull-right">Use Country Code as whatsapp need it</span>
+                                <span class="pull-right">{Lang::T('Use Country Code as whatsapp need it')}</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12">
-                                <button class="btn btn-success btn-block btn-sm" type="submit">Add</button>
+                                <button class="btn btn-success btn-block btn-sm" type="submit">{Lang::T('Add')}</button>
                             </div>
                         </div>
                     </form>
@@ -117,7 +117,7 @@
         <div class="col-md-8">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Registered Phone</h3>
+                    <h3 class="box-title">{Lang::T('Registered Phone')}</h3>
                     <div class="box-tools pull-right">
                         <a href="{$_url}plugin/whatsappGateway_config" class="btn btn-box-tool" data-toggle="tooltip"
                             data-placement="top" title="Configuration"><i class="glyphicon glyphicon-cog"></i></a>
@@ -126,9 +126,9 @@
                 <table class="table table-condensed table-bordered">
                     <thead>
                         <tr>
-                            <th>Phone Number</th>
+                            <th>{Lang::T('Phone Number')}</th>
                             <th>Status</th>
-                            <th colspan="2">Action</th>
+                            <th colspan="2">{Lang::T('Action')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -145,7 +145,7 @@
                                 </td>
                                 <td>
                                     <a href="{$_url}plugin/whatsappGateway_delPhone&p={$phone}" class="btn btn-xs btn-danger"
-                                        onclick="return confirm('Remove {$phone}?')">Remove</a>
+                                        onclick="return confirm('Remove {$phone}?')">{Lang::T('Remove')}</a>
                                 </td>
                             </tr>
                         {/foreach}
@@ -153,20 +153,19 @@
                 </table>
             </div>
             <div class="bs-callout bs-callout-warning well">
-                <h4>API To send directly</h4>
+                <h4>{Lang::T('API to send directly')}</h4>
                 <input type="text" class="form-control" readonly onclick="this.select();"
                     value="{$_url}plugin/whatsappGateway_send&to=[number]&msg=[text]&secret={md5($_c['whatsapp_gateway_secret'])}">
-                <span class="text-muted">Change Auth Basic Password will change secret. No need to change whatsapp URL in PHPNuxBill with this. the plugin will work directly.</span>
+                <span class="text-muted">{Lang::T('Change Auth Basic Password will change secret. No need to change whatsapp URL in PHPNuxBill with this. the plugin will work directly.')}</span>
             </div>
         </div>
     </div>
 {/if}
 
 <div class="bs-callout bs-callout-warning well">
-    <h4>Sending WhatsApp</h4>
-    <p>If you put multiple number, it will send random to any existed phone number. even if it not logged in to
-        WhatsApp.</p>
-    <p><b>Empty Whatsapp Server URL in PHPNuxBill configuration</b>, this plugin will overide sending WhatsApp.</p>
+    <h4>{Lang::T('Sending WhatsApp')}</h4>
+    <p>{Lang::T('If you put multiple number, it will send random to any existed phone number. even if it not logged in to WhatsApp.')}</p>
+    <p><b>{Lang::T('Empty Whatsapp Server URL in PHPNuxBill configuration')}</b>, {Lang::T('this plugin will overide sending WhatsApp.')}</p>
     <p>This plugin only support <a href="https://github.com/dimaskiddo/go-whatsapp-multidevice-rest" target="_blank">Go
             WhatsApp Multi-Device</a>
 </div>
