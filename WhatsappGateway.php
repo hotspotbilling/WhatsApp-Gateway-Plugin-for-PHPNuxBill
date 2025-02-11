@@ -198,7 +198,9 @@ function whatsappGateway_hook_send_whatsapp($data = [])
             [
                 'Content-Type: application/x-www-form-urlencoded',
                 "Authorization: Bearer $json[jwt]"
-            ]
+            ],
+            5000,
+            120000
         );
     }
 }
@@ -322,7 +324,9 @@ function whatsappGateway_loginApi($jwt_whatsapp)
         [
             'Content-Type: application/x-www-form-urlencoded',
             "Authorization: Bearer $jwt_whatsapp"
-        ]
+        ],
+        5000,
+        120000
     );
     return $result;
 }
